@@ -1,0 +1,49 @@
+<?php
+$users_get = [];
+
+if (isset($_GET["users_get"])) {
+	$users_get = $_GET["users_get"];
+}
+
+echo "В массиве users_get " . count($users_get) . " элемента/ов<br>";
+
+foreach ($users_get as $user) echo "$user<br>";
+echo "<br>";
+?>
+
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>METANIT.COM</title>
+		<meta charset="utf-8" />
+	</head>
+
+	<body>
+	<?php
+	if (isset($_POST["users_post"])) {
+		$users_post = $_POST["users_post"];
+
+		echo "В массиве users_post " . count($users_post) . " элемента/ов<br>";
+
+		foreach ($users_post as $user) {
+			echo "$user<br>";	
+		}
+
+		$firstUser = $_POST["users_post"]["first"];
+		$secondUser = $_POST["users_post"]["second"];
+		$thirdUser = $_POST["users_post"]["third"];
+		echo "<h5>$firstUser<br>$secondUser<br>$thirdUser</h5>";
+	}	
+	?>
+
+	<!-- Но также мы можем в элементах формы явным образом указать ключи: -->
+	<h3>Форма ввода данных</h3>
+	<form method="POST">
+		<p>User 1: <input type="text" name="users_post[first]" /></p>
+		<p>User 2: <input type="text" name="users_post[second]" /></p>
+		<p>User 3: <input type="text" name="users_post[third]" /></p>
+		<input type="submit" value="Отправить">
+	</form>
+	</body>
+</html>
